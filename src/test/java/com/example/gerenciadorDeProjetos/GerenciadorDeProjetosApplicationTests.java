@@ -1,4 +1,4 @@
-package com.example.GerenciadorDeProjetos;
+package com.example.gerenciadorDeProjetos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

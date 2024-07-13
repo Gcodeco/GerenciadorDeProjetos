@@ -1,6 +1,6 @@
-package Repositories;
+package com.example.gerenciadorDeProjetos.repositories;
 
-import Projeto.Projeto;
+import com.example.gerenciadorDeProjetos.Projeto.Projeto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

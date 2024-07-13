@@ -1,4 +1,4 @@
-package Projeto;
+package com.example.gerenciadorDeProjetos.Projeto;
 
 import jakarta.persistence.*;
 import lombok.*;

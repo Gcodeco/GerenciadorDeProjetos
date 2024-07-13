@@ -1,8 +1,8 @@
-package Service;
+package com.example.gerenciadorDeProjetos.Service;
 
-import DTO.ProjetoDTO;
-import Projeto.Projeto;
-import Repositories.ProjetoRepository;
+import com.example.gerenciadorDeProjetos.dto.ProjetoDTO;
+import com.example.gerenciadorDeProjetos.Projeto.Projeto;
+import com.example.gerenciadorDeProjetos.repositories.ProjetoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +36,7 @@ public class ProjetoService {
         if(projeto.isPresent()) {
             return modelMapper.map(projeto.get(), ProjetoDTO.class);
         }else{
-            throw new Exception("Projeto não Encontrado");
+            throw new Exception("com.example.gerenciadorDeProjetos.Projeto não Encontrado");
         }
     }
 
@@ -48,7 +48,7 @@ public class ProjetoService {
             projeto.setDescricao(projetoDTO.getDescricao());
             projetoRepository.save(projeto);
         }else {
-            throw new Exception("Projeto não encontrado");
+            throw new Exception("com.example.gerenciadorDeProjetos.Projeto não encontrado");
         }
     }
 
@@ -57,7 +57,7 @@ public class ProjetoService {
         if(projeto.isPresent()){
             projetoRepository.delete(projeto.get());
         }else{
-            throw new Exception("Projeto não Encontrado");
+            throw new Exception("com.example.gerenciadorDeProjetos.Projeto não Encontrado");
         }
 
     }

@@ -1,4 +1,4 @@
-package enums;
+package com.example.gerenciadorDeProjetos.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

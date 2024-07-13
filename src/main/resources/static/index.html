@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de Projetos</title>
     <style>
-        /* Adicione algum CSS para garantir que o texto seja visível */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -40,82 +39,82 @@
 <h1>Listagem de Projetos</h1>
 <ul id="listaProjetos"></ul>
 <script>
-        async function listarProjetos() {
-            try {
-                const response = await fetch('/projeto/listar');
-                if (!response.ok) throw new Error('Erro ao buscar projetos');
-                const projetos = await response.json();
-                const listaProjetos = document.getElementById('listaProjetos');
-                listaProjetos.innerHTML = '';
+    async function listarProjetos() {
+        try {
+            const response = await fetch('http://localhost:8080/projeto/listar');
+            if (!response.ok) throw new Error('Erro ao buscar projetos');
+            const projetos = await response.json();
+            const listaProjetos = document.getElementById('listaProjetos');
+            listaProjetos.innerHTML = '';
 
-                projetos.forEach(projeto => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        ${projeto.titulo} - ${projeto.descricao}
-                        <button onclick="visualizarProjeto(${projeto.id})">Visualizar</button>
-                        <button onclick="editarProjeto(${projeto.id})">Editar</button>
-                        <button onclick="excluirProjeto(${projeto.id})">Excluir</button>
-                    `;
-                    listaProjetos.appendChild(li);
-                });
-            } catch (error) {
-                alert(error.message);
-            }
+            projetos.forEach(projeto => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    ${projeto.titulo} - ${projeto.descricao}
+                    <button onclick="visualizarProjeto(${projeto.id})">Visualizar</button>
+                    <button onclick="editarProjeto(${projeto.id})">Editar</button>
+                    <button onclick="excluirProjeto(${projeto.id})">Excluir</button>
+                `;
+                listaProjetos.appendChild(li);
+            });
+        } catch (error) {
+            alert(error.message);
         }
+    }
 
-        async function visualizarProjeto(id) {
-            try {
-                const response = await fetch(`/projeto/visualizar/${id}`);
-                if (!response.ok) throw new Error('Erro ao buscar projeto');
-                const projeto = await response.json();
-                alert(`Título: ${projeto.titulo}\nDescrição: ${projeto.descricao}`);
-            } catch (error) {
-                alert(error.message);
-            }
+    async function visualizarProjeto(id) {
+        try {
+            const response = await fetch(`http://localhost:8080/projeto/visualizar/${id}`);
+            if (!response.ok) throw new Error('Erro ao buscar projeto');
+            const projeto = await response.json();
+            alert(`Título: ${projeto.titulo}\nDescrição: ${projeto.descricao}`);
+        } catch (error) {
+            alert(error.message);
         }
+    }
 
-        async function editarProjeto(id) {
-            const novoTitulo = prompt('Digite o novo título:');
-            const novaDescricao = prompt('Digite a nova descrição:');
+    async function editarProjeto(id) {
+        const novoTitulo = prompt('Digite o novo título:');
+        const novaDescricao = prompt('Digite a nova descrição:');
 
-            try {
-                const response = await fetch(`/projeto/editar/${id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ titulo: novoTitulo, descricao: novaDescricao })
-                });
+        try {
+            const response = await fetch(`http://localhost:8080/projeto/editar/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ titulo: novoTitulo, descricao: novaDescricao })
+            });
 
-                if (response.ok) {
-                    alert('Projeto atualizado com sucesso');
-                    listarProjetos();
-                } else {
-                    throw new Error('Erro ao atualizar projeto');
-                }
-            } catch (error) {
-                alert(error.message);
+            if (response.ok) {
+                alert('Projeto atualizado com sucesso');
+                listarProjetos();
+            } else {
+                throw new Error('Erro ao atualizar projeto');
             }
+        } catch (error) {
+            alert(error.message);
         }
+    }
 
-        async function excluirProjeto(id) {
-            try {
-                const response = await fetch(`/projeto/excluir/${id}`, {
-                    method: 'DELETE'
-                });
+    async function excluirProjeto(id) {
+        try {
+            const response = await fetch(`http://localhost:8080/projeto/excluir/${id}`, {
+                method: 'DELETE'
+            });
 
-                if (response.ok) {
-                    alert('Projeto excluído com sucesso');
-                    listarProjetos();
-                } else {
-                    throw new Error('Erro ao excluir projeto');
-                }
-            } catch (error) {
-                alert(error.message);
+            if (response.ok) {
+                alert('Projeto excluído com sucesso');
+                listarProjetos();
+            } else {
+                throw new Error('Erro ao excluir projeto');
             }
+        } catch (error) {
+            alert(error.message);
         }
+    }
 
-        document.addEventListener('DOMContentLoaded', listarProjetos);
-    </script>
+    document.addEventListener('DOMContentLoaded', listarProjetos);
+</script>
 </body>
 </html>

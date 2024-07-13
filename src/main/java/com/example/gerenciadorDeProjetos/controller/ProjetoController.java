@@ -1,8 +1,8 @@
-package Controller;
+package com.example.gerenciadorDeProjetos.controller;
 
-import DTO.ProjetoDTO;
-import Service.ProjetoService;
-import enums.MensagemEnum;
+import com.example.gerenciadorDeProjetos.dto.ProjetoDTO;
+import com.example.gerenciadorDeProjetos.Service.ProjetoService;
+import com.example.gerenciadorDeProjetos.enums.MensagemEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +15,12 @@ public class ProjetoController {
 
     @Autowired
     ProjetoService projetoService;
+
+
+    @GetMapping("/teste")
+    public String teste (){
+        return "teste";
+    }
 
     @PostMapping("/salvar")
     public ResponseEntity<String> salvar(@RequestBody ProjetoDTO projetoDTO){

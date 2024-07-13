@@ -1,4 +1,4 @@
-package com.example.GerenciadorDeProjetos;
+package com.example.gerenciadorDeProjetos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
